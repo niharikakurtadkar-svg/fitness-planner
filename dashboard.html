@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitZone — Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .dash-header {
+      text-align: center;
+      padding: 48px 20px 24px;
+    }
+    .dash-header h2 {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.8rem;
+      color: var(--neon);
+      text-shadow: var(--glow);
+      margin-bottom: 8px;
+    }
+    .dash-header p {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+    .dash-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 24px 60px;
+    }
+    .dash-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--neon);
+      border-radius: 14px;
+      padding: 28px 22px;
+      text-align: center;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+    .dash-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 0 24px rgba(0,255,180,0.15);
+    }
+    .dash-card .icon {
+      font-size: 2.4rem;
+    }
+    .dash-card h3 {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.85rem;
+      color: var(--neon);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .dash-card p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .logout-wrap {
+      text-align: center;
+      padding-bottom: 40px;
+    }
+    .user-info {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: -10px;
+      margin-bottom: 10px;
+    }
+    .user-info span {
+      color: var(--neon);
+      font-family: 'Orbitron', monospace;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="logo">FIT<span>ZONE</span></a>
+  <div class="nav-links">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="#" onclick="logout()">Logout</a>
+  </div>
+</nav>
+
+<div class="dash-header">
+  <h2>Welcome to FitZone</h2>
+  <p>Choose a feature to get started</p>
+</div>
+
+<div class="user-info">
+  Logged in as: <span id="userEmail">Loading...</span>
+</div>
+
+<div class="dash-grid">
+
+  <a href="bmi.html" class="dash-card">
+    <div class="icon">📏</div>
+    <h3>BMI Calculator</h3>
+    <p>Check your Body Mass Index and understand your health category.</p>
+  </a>
+
+  <a href="workout.html" class="dash-card">
+    <div class="icon">💪</div>
+    <h3>Workout Plans</h3>
+    <p>Get a personalized weekly workout plan based on your fitness goal.</p>
+  </a>
+
+  <a href="diet.html" class="dash-card">
+    <div class="icon">🥗</div>
+    <h3>Diet Planner</h3>
+    <p>View meal plans tailored for weight loss, gain, or maintenance.</p>
+  </a>
+
+  <a href="calorie.html" class="dash-card">
+    <div class="icon">🔥</div>
+    <h3>Calorie Tracker</h3>
+    <p>Log your daily calories and track progress toward your goal.</p>
+  </a>
+
+  <a href="water.html" class="dash-card">
+    <div class="icon">💧</div>
+    <h3>Water Intake</h3>
+    <p>Track how many glasses of water you drink each day.</p>
+  </a>
+
+  <a href="sleep.html" class="dash-card">
+    <div class="icon">😴</div>
+    <h3>Sleep Monitor</h3>
+    <p>Log your sleep hours and see if you're hitting your rest goals.</p>
+  </a>
+
+  <a href="progress.html" class="dash-card">
+    <div class="icon">📊</div>
+    <h3>Progress Charts</h3>
+    <p>Log your weight and visualize your fitness journey over time.</p>
+  </a>
+
+</div>
+
+<div class="logout-wrap">
+  <button class="btn btn-outline" onclick="logout()">👋 Logout</button>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script src="js/app.js"></script>
+<script>
+  // Show logged in user email + redirect if not logged in
+  auth.onAuthStateChanged(user => {
+    if (!user) {
+      window.location.href = "login.html";
+    } else {
+      document.getElementById("userEmail").textContent = user.email;
+    }
+  });
+</script>
+
+</body>
+</html>

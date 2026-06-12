@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitZone — Diet Planner</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="logo">FIT<span>ZONE</span></a>
+  <div class="nav-links"><a href="dashboard.html">Dashboard</a></div>
+</nav>
+
+<div class="container">
+  <a href="dashboard.html" class="back-link">← Back to Dashboard</a>
+
+  <div class="page-header">
+    <span class="icon">🥗</span>
+    <h1>Diet Planner</h1>
+    <p>Personalised meal plan for your goal</p>
+  </div>
+
+  <div class="card">
+    <h3>Select Your Goal</h3>
+    <label>Fitness Goal</label>
+    <select id="goal">
+      <option value="">— Choose goal —</option>
+      <option value="loss">Weight Loss</option>
+      <option value="gain">Weight / Muscle Gain</option>
+      <option value="maintain">Maintain Weight</option>
+    </select>
+    <button class="btn btn-primary" onclick="showDiet(); document.getElementById('planCard').style.display='block';">Show Diet Plan</button>
+  </div>
+
+  <div class="card" id="planCard" style="display:none;">
+    <h3>Your Meal Plan</h3>
+    <div id="dietOutput"></div>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
+

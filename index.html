@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitZone — Cloud Fitness Planner</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .hero {
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; text-align: center;
+      min-height: calc(100vh - 64px);
+      padding: 40px 20px;
+      position: relative; z-index: 1;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(0,255,180,.1);
+      border: 1px solid rgba(0,255,180,.3);
+      color: var(--neon);
+      font-size: .8rem;
+      letter-spacing: 2px;
+      padding: 6px 16px;
+      border-radius: 999px;
+      margin-bottom: 24px;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(2.4rem, 8vw, 5.5rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.05;
+      margin-bottom: 10px;
+    }
+    .hero h1 .accent { color: var(--neon); text-shadow: var(--glow); }
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 36px;
+      line-height: 1.6;
+    }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+    .hero-btns a { width: 180px; }
+    .features-strip {
+      display: flex; gap: 28px; flex-wrap: wrap; justify-content: center;
+      margin-top: 60px;
+    }
+    .feat-pill {
+      display: flex; align-items: center; gap: 8px;
+      color: var(--muted); font-size: .9rem; letter-spacing: .5px;
+      text-decoration: none;
+      transition: color 0.2s;
+      cursor: pointer;
+    }
+    .feat-pill:hover { color: var(--neon); }
+    .feat-pill span { font-size: 1.2rem; }
+    /* glow orb */
+    .orb {
+      position: fixed; border-radius: 50%;
+      filter: blur(120px); pointer-events: none; z-index: 0;
+    }
+    .orb1 { width: 500px; height: 500px; background: rgba(0,255,180,.07); top: -100px; left: -100px; }
+    .orb2 { width: 400px; height: 400px; background: rgba(0,200,255,.06); bottom: -80px; right: -80px; }
+  </style>
+</head>
+<body>
+
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<nav class="navbar">
+  <a href="index.html" class="logo">FIT<span>ZONE</span></a>
+  <div class="nav-links">
+    <a href="login.html">Login</a>
+    <a href="login.html">Sign Up</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">☁️ Powered by Firebase Cloud</div>
+  <h1>Track. Train.<br><span class="accent">Transform.</span></h1>
+  <p>Your all-in-one cloud fitness companion. Monitor BMI, workouts, calories, water, sleep and more — all synced in real time.</p>
+  <div class="hero-btns">
+    <a href="login.html" class="btn btn-primary">Get Started</a>
+    <a href="dashboard.html" class="btn btn-secondary">Dashboard</a>
+  </div>
+
+  <!-- FIX 2: Feature pills are now real clickable links -->
+  <div class="features-strip">
+    <a href="bmi.html"      class="feat-pill"><span>📏</span> BMI Calculator</a>
+    <a href="workout.html"  class="feat-pill"><span>💪</span> Workout Plans</a>
+    <a href="calorie.html"  class="feat-pill"><span>🔥</span> Calorie Tracker</a>
+    <a href="water.html"    class="feat-pill"><span>💧</span> Water Intake</a>
+    <a href="sleep.html"    class="feat-pill"><span>😴</span> Sleep Monitor</a>
+    <a href="progress.html" class="feat-pill"><span>📊</span> Progress Charts</a>
+    <a href="diet.html"     class="feat-pill"><span>🥗</span> Diet Planner</a>
+  </div>
+</section>
+
+<!-- FIX 1: script is now INSIDE </html>, right before </body> -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>

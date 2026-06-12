@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitZone — Weight Progress</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    #weightChart { max-height: 280px; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="logo">FIT<span>ZONE</span></a>
+  <div class="nav-links"><a href="dashboard.html">Dashboard</a></div>
+</nav>
+
+<div class="container">
+  <a href="dashboard.html" class="back-link">← Back to Dashboard</a>
+
+  <div class="page-header">
+    <span class="icon">📊</span>
+    <h1>Weight Progress</h1>
+    <p>Track your weight journey over time</p>
+  </div>
+
+  <div class="card">
+    <h3>Log Weight</h3>
+    <label>Today's Weight (kg)</label>
+    <input type="number" id="weight" placeholder="e.g. 62.5">
+    <button class="btn btn-primary" onclick="saveWeight()">Save Entry</button>
+  </div>
+
+  <div class="card">
+    <h3>Progress Chart</h3>
+    <canvas id="weightChart"></canvas>
+  </div>
+
+  <div class="card">
+    <h3>History</h3>
+    <div id="weightOutput"></div>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="js/app.js"></script>
+<script>
+  firebase.auth().onAuthStateChanged(user => {
+    if (user) loadWeights();
+  });
+</script>
+</body>
+</html>

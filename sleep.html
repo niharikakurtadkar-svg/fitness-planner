@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitZone — Sleep Tracker</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="logo">FIT<span>ZONE</span></a>
+  <div class="nav-links"><a href="dashboard.html">Dashboard</a></div>
+</nav>
+
+<div class="container">
+  <a href="dashboard.html" class="back-link">← Back to Dashboard</a>
+
+  <div class="page-header">
+    <span class="icon">😴</span>
+    <h1>Sleep Tracker</h1>
+    <p>8 hours is the goal — how are you doing?</p>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-box">
+      <div class="val" style="color:var(--neon3);" id="sleepOutput">—</div>
+      <div class="lbl">Hours Last Night</div>
+    </div>
+    <div class="stat-box">
+      <div class="val" style="color:var(--muted);">8</div>
+      <div class="lbl">Recommended</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Sleep Quality</h3>
+    <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:.85rem;color:var(--muted);">
+      <span>0h</span><span>8h+</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="sleepBar" style="width:0%;background:linear-gradient(90deg,var(--neon3),#7c00ff);"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Log Last Night's Sleep</h3>
+    <label>Hours Slept</label>
+    <input type="number" id="sleepHours" placeholder="e.g. 7.5" min="0" max="24" step="0.5">
+    <button class="btn btn-primary" onclick="addSleep()">Save Sleep</button>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitZone — Workout Planner</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="logo">FIT<span>ZONE</span></a>
+  <div class="nav-links"><a href="dashboard.html">Dashboard</a></div>
+</nav>
+
+<div class="container">
+  <a href="dashboard.html" class="back-link">← Back to Dashboard</a>
+
+  <div class="page-header">
+    <span class="icon">💪</span>
+    <h1>Workout Planner</h1>
+    <p>Goal-based weekly exercise schedule</p>
+  </div>
+
+  <div class="card">
+    <h3>Select Your Goal</h3>
+    <label>Fitness Goal</label>
+    <select id="goal">
+      <option value="">— Choose goal —</option>
+      <option value="loss">Weight Loss</option>
+      <option value="gain">Muscle Gain</option>
+      <option value="maintain">Maintain Fitness</option>
+    </select>
+    <button class="btn btn-primary" onclick="showWorkout()">Generate Plan</button>
+  </div>
+
+  <div class="card" id="planCard" style="display:none;">
+    <h3>Your Weekly Plan</h3>
+    <div id="workoutOutput"></div>
+  </div>
+</div>
+
+<script>
+const _showWorkout = window.showWorkout;
+// Override to show card
+function showWorkout() {
+  const goal = document.getElementById("goal").value;
+  if (!goal) { toast("⚠️ Select a goal"); return; }
+  const WORKOUTS = {
+    loss: [
+      { day: "Mon/Thu", ex: "30 min brisk walk + 3×15 squats" },
+      { day: "Tue/Fri", ex: "20 min cycling + 3×12 jumping jacks" },
+      { day: "Wed/Sat", ex: "HIIT (20s on / 10s off × 8 rounds)" },
+      { day: "Sun",     ex: "Rest + light stretching" }
+    ],
+    gain: [
+      { day: "Mon/Thu", ex: "Bench press 4×8 + Shoulder press 3×10" },
+      { day: "Tue/Fri", ex: "Squats 4×8 + Leg press 3×12" },
+      { day: "Wed/Sat", ex: "Deadlifts 4×6 + Barbell rows 3×10" },
+      { day: "Sun",     ex: "Rest + foam rolling" }
+    ],
+    maintain: [
+      { day: "Mon/Wed", ex: "Full-body circuit: 3×12 each exercise" },
+      { day: "Tue/Thu", ex: "30 min jogging / swimming" },
+      { day: "Fri",     ex: "Yoga / flexibility training" },
+      { day: "Sat/Sun", ex: "Active rest — walk, sports" }
+    ]
+  };
+  const plan = WORKOUTS[goal];
+  document.getElementById("workoutOutput").innerHTML = plan.map(w =>
+    `<div style="display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--border);">
+       <span style="min-width:80px;font-family:'Orbitron',monospace;font-size:.75rem;color:var(--neon);text-transform:uppercase;">${w.day}</span>
+       <span style="color:var(--text);">${w.ex}</span>
+     </div>`
+  ).join("");
+  document.getElementById("planCard").style.display = "block";
+}
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
